@@ -1,5 +1,4 @@
 import numpy as np
-import pandas as pd
 np.set_printoptions(threshold=np.nan)
 
 def get_size_txt(fname):
