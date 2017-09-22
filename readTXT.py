@@ -26,8 +26,24 @@ def read_txt(fname,row,col):
 
     return maze
 
+def find_enter_exit(maze):
+    enter_row = 0
+    enter_col = 0
+    exit_row = 0
+    exit_col = 0
+    for i in range(0,maze.shape[0]-1):
+        for j in range(0,maze.shape[1]-1):
+            if maze[i][j] == "P":
+                enter_row = i
+                enter_col = j
+            if maze[i][j] == ".":
+                exit_row = i
+                exit_col = j
+    return enter_row, enter_col, exit_row, exit_col
+
 row, col = get_size_txt('mediumMaze.txt')
 maze = read_txt('mediumMaze.txt',row, col)
+enter_row, enter_col, exit_row, exit_col = find_enter_exit(maze)
 print(row, col)
 print(maze)
-
+print(maze[enter_row, enter_col],maze[exit_row,exit_col])
