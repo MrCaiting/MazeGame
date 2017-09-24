@@ -6,8 +6,8 @@ import utility
 
 
 def a_star_search(maze, start, goal):
-    neighbors = [(0, 1), (0, -1), (1, 0), (-1, 0), (1, 1),
-                 (1, -1), (-1, 1), (-1, -1)]    # quick neighbors fiding offset
+    neighbors = [(0, 1), (0, -1), (1, 0), (-1, 0)]
+    "(1, 1), (1, -1), (-1, 1), (-1, -1)] "   # quick neighbors fiding offset
     close_list = set()
     parents = {}        # List to hold all parents
     node_expanded = 0
@@ -55,10 +55,9 @@ def a_star_search(maze, start, goal):
             else:              # if the x-coordinate is not valid
                 continue
 
-            if neighbor in close_list:      # skip if the node is closed
+            if neighbor in close_list and g_temp >= g_score.get(neighbor, 0):      # skip if the node is closed
                 continue
-            if g_temp >= g_score.get(neighbor, 0):
-                continue
+            #
             if g_temp < g_score.get(neighbor, 0) or (neighbor not in [i[1] for
                                                      i in frontier.heap]):
                 parents[neighbor] = current
@@ -66,5 +65,4 @@ def a_star_search(maze, start, goal):
                 f_score[neighbor] = f_temp
                 frontier.push(neighbor, f_score[neighbor])
                 node_expanded += 1
-
     return False

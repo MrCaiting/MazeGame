@@ -39,10 +39,12 @@ def find_enter_exit(maze):
                 exit_row = i
                 exit_col = j
     return enter_row, enter_col, exit_row, exit_col
-
+"""
 row, col = get_size_txt('mediumMaze.txt')
 maze = read_txt('mediumMaze.txt',row, col)
 enter_row, enter_col, exit_row, exit_col = find_enter_exit(maze)
 print(row, col)
 print(maze)
 print(maze[enter_row, enter_col],maze[exit_row,exit_col])
+"""
+
