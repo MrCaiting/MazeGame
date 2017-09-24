@@ -53,3 +53,13 @@ class PriorityQueue:
 
     def isEmpty(self):
         return len(self.heap) == 0
+
+
+def heuristicFcn(p, q):
+    """
+    Using the manhatten distance as the heuristic
+    function for Greedy and A star search
+    """
+    (x1, y1) = p
+    (x2, y2) = q
+    return abs(x1 - x2) + abs(y1 - y2)
