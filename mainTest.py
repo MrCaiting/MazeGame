@@ -24,4 +24,4 @@ withPath = open('solution.txt', 'w')
 for i in range(maze.shape[0]):
     for j in range(maze.shape[1]):
         withPath.write("%s" % maze[i][j])
-        withPath.write("\n")
+    withPath.write("\n")
