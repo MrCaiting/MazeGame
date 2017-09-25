@@ -3,17 +3,17 @@
 
 import readTXT
 import aStar
-import utility
+from utility import *
 
 "Read the maze txt file and get everything we need for searching"
+
 row, col = readTXT.get_size_txt('mediumMaze.txt')
 maze = readTXT.read_txt('mediumMaze.txt',row, col)
-start_x, start_y, end_x, end_y = readTXT.find_enter_exit(maze)
-start = (start_x, start_y)
-goal = (end_x, end_y)
+start, end = readTXT.find_enter_exit(maze)
 
-path = aStar.a_star_search(maze, start, goal)
+path = aStar.a_star_search(maze, start, end)
 print(path)
+
 for i, j in path:
     maze[i][j] = "."
 

@@ -38,7 +38,7 @@ def find_enter_exit(maze):
             if maze[i][j] == ".":
                 exit_row = i
                 exit_col = j
-    return enter_row, enter_col, exit_row, exit_col
+    return (enter_row, enter_col), (exit_row, exit_col)
 """
 row, col = get_size_txt('mediumMaze.txt')
 maze = read_txt('mediumMaze.txt',row, col)
