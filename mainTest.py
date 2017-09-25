@@ -16,14 +16,12 @@ method = 0
 path = method_list[method](maze, start, end)
 print(path)
 
-if method == 2:
-    for i, j in path:
-        maze[i][j] = "."
 
-    withPath = open('solution.txt', 'w')
-    for i in range(maze.shape[0]):
-        for j in range(maze.shape[1]):
-            withPath.write("%s" % maze[i][j])
+for i, j in path:
+    maze[i][j] = "."
+
+withPath = open('solution.txt', 'w')
+for i in range(maze.shape[0]):
+    for j in range(maze.shape[1]):
+        withPath.write("%s" % maze[i][j])
         withPath.write("\n")
-
-    print(path)
