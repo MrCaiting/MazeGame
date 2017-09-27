@@ -1,5 +1,9 @@
 # mainTest.py
-# Like the main.c in C, we put all the code here to test different method to run the maze
+
+"""
+Like the main.c in C, we put all the code here to
+test different method to run the maze
+"""
 
 import readTXT
 from aStar import *
@@ -9,7 +13,7 @@ from utility import *
 "Read the maze txt file and get everything we need for searching"
 
 row, col = readTXT.get_size_txt('mediumMaze.txt')
-maze = readTXT.read_txt('mediumMaze.txt',row, col)
+maze = readTXT.read_txt('mediumMaze.txt', row, col)
 start, end = readTXT.find_enter_exit(maze)
 method_list = (pacman_dfs, pacman_bfs, a_star_search)
 method = 0
