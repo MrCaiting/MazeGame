@@ -45,7 +45,7 @@ def find_enter_exit(maze):
                 exit_row = i
                 exit_col = j
 
-    return enter_row, enter_col, exit_row, exit_col
+    return (enter_row, enter_col), (exit_row, exit_col)
 
 def find_multi_goals(maze):
     enter_row = 0
