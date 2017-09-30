@@ -1,9 +1,8 @@
-import pandas as pd
-import numpy as np
 from collections import deque
+import time
 
-np.set_printoptions(threshold=np.nan)
 
+<<<<<<< HEAD
 
 def get_size_txt(fname):
     with open(fname) as f:
@@ -50,13 +49,21 @@ print(maze[1][59])
 
 
 def pacman_bfs(maze, start, end):
+=======
+def pacman_bfs(maze,start,end):
+>>>>>>> 8d27fc125a97c6335e6d088c839859031cb27419
     queue = deque([start])
     visited = set()
+    height = len(maze)
+    width = len(maze[0])
+    clk = time.clock()
     while queue:
         cur = queue.popleft()
         print(cur)
         if cur == end:
+            clk_used = time.clock() - clk
             print("found")
+            print("Time Used: ", clk_used, " seconds")
             return "man i am done"
         if cur in visited:
             continue
@@ -79,11 +86,15 @@ def pacman_dfs(maze, start, end):
     stack = [start]
     visited = set()
     path = set()
-
+    height = len(maze)
+    width = len(maze[0])
+    clk = time.clock()
     while stack:
         cur = stack.pop()
         if cur == end:
+            clk_used = time.clock() - clk
             print("done")
+            print("Time Used: ", clk_used, " seconds")
             return visited
         if cur in visited:
             continue
@@ -95,8 +106,13 @@ def pacman_dfs(maze, start, end):
         if (cur[1]+1) < width and maze[cur[0]][cur[1]+1] == ' ' or maze[cur[0]][cur[1]+1] == '.':
             stack.append((cur[0], cur[1]+1))
         if (cur[1]) > 0 and maze[cur[0]][cur[1]-1] == ' ' or maze[cur[0]][cur[1]-1] == '.':
+<<<<<<< HEAD
             stack.append((cur[0], cur[1]-1))
     return visited
 
 
 wp = pacman_dfs(maze, (21,1), (1,59))
+=======
+            stack.append((cur[0],cur[1]-1))
+    return visited
+>>>>>>> 8d27fc125a97c6335e6d088c839859031cb27419

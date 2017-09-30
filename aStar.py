@@ -3,11 +3,12 @@
 # Manhatten distance as heuristc fucntion
 
 import utility
+import time
 
 
 def a_star_search(maze, start, goal):
-    neighbors = [(0, 1), (0, -1), (1, 0), (-1, 0), (1, 1),
-                 (1, -1), (-1, 1), (-1, -1)]    # quick neighbors fiding offset
+    neighbors = [(0, 1), (0, -1), (1, 0), (-1, 0)]
+    "(1, 1), (1, -1), (-1, 1), (-1, -1)] "   # quick neighbors fiding offset
     close_list = set()
     parents = {}        # List to hold all parents
     node_expanded = 0
@@ -19,6 +20,8 @@ def a_star_search(maze, start, goal):
     frontier.push(start, 0)
     parents[start] = None
 
+    "Start Timer"
+    clk = time.clock()
     while not frontier.isEmpty():
         current = frontier.pop()
 
@@ -33,6 +36,8 @@ def a_star_search(maze, start, goal):
                 path.append(current)
                 current = parents[current]
                 cost_sofar += 1
+            clk_used = time.clock() - clk
+            print("Time Used: ", clk_used, " seconds")
             return path
 
         "If the current node is not our goal, we add it to the close list"
@@ -55,10 +60,10 @@ def a_star_search(maze, start, goal):
             else:              # if the x-coordinate is not valid
                 continue
 
-            if neighbor in close_list:      # skip if the node is closed
+            if neighbor in close_list and g_temp >= g_score.get(neighbor, 0):
+                # skip if the node is closed
                 continue
-            if g_temp >= g_score.get(neighbor, 0):
-                continue
+            
             if g_temp < g_score.get(neighbor, 0) or (neighbor not in [i[1] for
                                                      i in frontier.heap]):
                 parents[neighbor] = current
@@ -66,5 +71,4 @@ def a_star_search(maze, start, goal):
                 f_score[neighbor] = f_temp
                 frontier.push(neighbor, f_score[neighbor])
                 node_expanded += 1
-
     return False
