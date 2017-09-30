@@ -47,18 +47,19 @@ def find_enter_exit(maze):
 
     return enter_row, enter_col, exit_row, exit_col
 
-"""
->>>>>>> 8d27fc125a97c6335e6d088c839859031cb27419
-row, col = get_size_txt('mediumMaze.txt')
+def find_multi_goals(maze):
+    enter_row = 0
+    enter_col = 0
+    goal_list = []
+    coord = np.zeros(2)
+    for i in range(0, maze.shape[0]-1):
+        for j in range(0, maze.shape[1]-1):
+            if maze[i][j] == "P":
+                enter_row = i
+                enter_col = j
+            if maze[i][j] == ".":
+                coord[0] = i
+                coord[1] = j
+                goal_list.append(coord)
 
-
-maze = read_txt('mediumMaze.txt', row, col)
-enter_row, enter_col, exit_row, exit_col = find_enter_exit(maze)
-print(row, col)
-print(maze)
-<<<<<<< HEAD
-print(maze[enter_row, enter_col], maze[exit_row, exit_col])
-=======
-print(maze[enter_row, enter_col],maze[exit_row,exit_col])
-"""
-
+    return enter_row, enter_col, goal_list
