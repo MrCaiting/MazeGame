@@ -1,9 +1,6 @@
 from collections import deque
 import time
 
-
-<<<<<<< HEAD
-
 def get_size_txt(fname):
     with open(fname) as f:
         row_count = 0
@@ -48,10 +45,7 @@ found = "found"
 print(maze[1][59])
 
 
-def pacman_bfs(maze, start, end):
-=======
 def pacman_bfs(maze,start,end):
->>>>>>> 8d27fc125a97c6335e6d088c839859031cb27419
     queue = deque([start])
     visited = set()
     height = len(maze)
@@ -106,13 +100,8 @@ def pacman_dfs(maze, start, end):
         if (cur[1]+1) < width and maze[cur[0]][cur[1]+1] == ' ' or maze[cur[0]][cur[1]+1] == '.':
             stack.append((cur[0], cur[1]+1))
         if (cur[1]) > 0 and maze[cur[0]][cur[1]-1] == ' ' or maze[cur[0]][cur[1]-1] == '.':
-<<<<<<< HEAD
             stack.append((cur[0], cur[1]-1))
     return visited
 
 
 wp = pacman_dfs(maze, (21,1), (1,59))
-=======
-            stack.append((cur[0],cur[1]-1))
-    return visited
->>>>>>> 8d27fc125a97c6335e6d088c839859031cb27419
