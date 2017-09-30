@@ -9,14 +9,15 @@ import readTXT
 from aStar import *
 from DFS_BFS import *
 from utility import *
+from best_first_search import *
 
 "Read the maze txt file and get everything we need for searching"
 
 row, col = readTXT.get_size_txt('mediumMaze.txt')
 maze = readTXT.read_txt('mediumMaze.txt', row, col)
 start, end = readTXT.find_enter_exit(maze)
-method_list = (pacman_dfs, pacman_bfs, a_star_search)
-method = 0
+method_list = (pacman_dfs, pacman_bfs, best_first_search, a_star_search)
+method = 2
 path = method_list[method](maze, start, end)
 print(path)
 
