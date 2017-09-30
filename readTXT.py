@@ -47,8 +47,6 @@ def find_enter_exit(maze):
 
     return enter_row, enter_col, exit_row, exit_col
 
-
-    return (enter_row, enter_col), (exit_row, exit_col)
 """
 >>>>>>> 8d27fc125a97c6335e6d088c839859031cb27419
 row, col = get_size_txt('mediumMaze.txt')
