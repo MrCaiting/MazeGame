@@ -2,8 +2,8 @@ import readTXT
 from a_star_multigoal import *
 import utility
 
-row, col = readTXT.get_size_txt('mediumSearch.txt')
-maze = readTXT.read_txt('mediumSearch.txt', row, col)
+row, col = readTXT.get_size_txt('openSearch.txt')
+maze = readTXT.read_txt('openSearch.txt', row, col)
 print(maze[4][4])
 start,goal_list = readTXT.find_multi_goals(maze)
 print(start, goal_list)
@@ -19,7 +19,7 @@ flag, total_cost, node_expanded, goal_sequence = a_star_multigoal(maze, start, g
 print(flag, total_cost, node_expanded)
 print(goal_sequence)
 
-index = 0
+index = 1
 for i, j in goal_sequence:
     if (1 <= index <= 10):
         maze[i][j] = index-1
@@ -27,6 +27,7 @@ for i, j in goal_sequence:
         maze[i][j] = chr(ord('a') + (index-11))
     if (37 <= index <= 62):
         maze[i][j] = chr(ord('A') + (index-37))
+    index+= 1
 
 withPath = open('multiGoalSolution.txt', 'w')
 for i in range(maze.shape[0]):
