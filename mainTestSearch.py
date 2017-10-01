@@ -2,8 +2,8 @@ import readTXT
 from a_star_multigoal import *
 import utility
 
-row, col = readTXT.get_size_txt('tinySearch.txt')
-maze = readTXT.read_txt('tinySearch.txt', row, col)
+row, col = readTXT.get_size_txt('mediumSearch.txt')
+maze = readTXT.read_txt('mediumSearch.txt', row, col)
 print(maze[4][4])
 start,goal_list = readTXT.find_multi_goals(maze)
 print(start, goal_list)
