@@ -123,6 +123,8 @@ def a_star_multigoal(maze, current, ToGoGoals, goal_sequence, frontier,
         if (flag == 1):
             path_cost[neighbor] = new_cost
             heu_val[neighbor] = new_heu
+        " push the child on to the p-Queue"
+        frontier.push(neighbor, heu_val[neighbor])
     success = 0
     while (success == 0 and frontier.isEmpty() != 0):
         currNode = frontier.pop()
@@ -138,5 +140,3 @@ def a_star_multigoal(maze, current, ToGoGoals, goal_sequence, frontier,
                                                                   total_cost,
                                                                   node_expanded)
     return 1, total_cost, node_expanded
-
-
