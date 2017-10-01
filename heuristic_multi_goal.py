@@ -19,7 +19,8 @@ def heuristic_multi_goal(curr_child, goal_list, path_cost, closed_list, heu_val)
     MSTweight = MST.findMSTweight(min_tree)
 
     heuristic = min_dist_2goal + MSTweight + path_cost + 1
-
+    hn = heu_val
+    cost = path_cost
     if (curr_child not in closed_list) or (heuristic < heu_val):
         hn = heuristic
         cost = path_cost + 1
