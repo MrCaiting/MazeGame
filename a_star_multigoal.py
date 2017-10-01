@@ -3,6 +3,53 @@
 from utility import PriorityQueue
 from heuristic_multi_goal import heuristic_multi_goal
 import time
+"""
+a_star_multi_init(maze)
+
+DESCRIPTION:
+This function is used to initialize what we need in the actual A star function
+Give the maze data as input, we want to acquire some essential properties of
+every single point in the maze, including: visited, heu_val, Priority Queue,
+and path cost
+
+INPUTS:
+maze:           The 2D string matrix that we have got from reading the txt file
+
+OUTPUTS:
+heu_val: a dictionary of all the heuristic value corresponded to a single point
+visited: if this point has been visited (can ONLY be 0 or 1)
+path_cost: the cost to get this point so far
+frontier: a p-Queue that we will be using in A star algorithm
+"""
+
+
+def a_star_multi_init(maze):
+    path_cost = {}
+    heu_val = {}
+    visited = {}
+    for i in range(maze.shape[0]):
+        for j in range(maze.shape[1]):
+            heu_val[(i, j)] = 0
+            visited [(i, j)] = 0
+            path_cost[(i, j)] = 0
+    return heu_val, visited, path_cost
+
+
+"""
+set_all_unvisited(visited, maze)
+
+DESCRIPTION: a helper function used to clear all the points as unvisited
+"""
+
+
+def set_all_unvisited(visited, maze_row, maze_col):
+    for i in range(maze_row):
+        for j in range(maze_col):
+            visited[(i, j)] = 0
+    return visited
+
+
+
 
 " All possible movements stored in a single list for future use "
 moves = [(0, 1), (0, -1), (1, 0), (-1, 0)]
@@ -45,7 +92,7 @@ def a_star_multigoal(maze, current, ToGoGoals, goal_sequence, frontier,
                 goal_sequence.append(current)
                 ToGoGoals.remove(current)
                 "Since a goal is found, we need to reset all others unvisited"
-                set_all_unvisited(visited, maze)
+                visited = set_all_unvisited(visited, maze.shape[0], maze.shape[1])
                 "Update the number of nodes that we have explored"
                 node_expanded += frontier.len()
                 "Remove all the elements in the priority queue"
@@ -93,45 +140,3 @@ def a_star_multigoal(maze, current, ToGoGoals, goal_sequence, frontier,
     return 1, total_cost, node_expanded
 
 
-"""
-a_star_multi_init(maze)
-
-DESCRIPTION:
-This function is used to initialize what we need in the actual A star function
-Give the maze data as input, we want to acquire some essential properties of
-every single point in the maze, including: visited, heu_val, Priority Queue,
-and path cost
-
-INPUTS:
-maze:           The 2D string matrix that we have got from reading the txt file
-
-OUTPUTS:
-heu_val: a dictionary of all the heuristic value corresponded to a single point
-visited: if this point has been visited (can ONLY be 0 or 1)
-path_cost: the cost to get this point so far
-frontier: a p-Queue that we will be using in A star algorithm
-"""
-
-
-def a_star_multi_init(maze):
-    for i in range(maze.shape[0]):
-        for j in range(maze.shape[1]):
-            heu_val = {(i, j): 0}
-            visited = {(i, j): 0}
-            path_cost = {(i, j): 0}
-
-    frontier = PriorityQueue()
-    return heu_val, visited, path_cost, frontier
-
-
-"""
-set_all_unvisited(visited, maze)
-
-DESCRIPTION: a helper function used to clear all the points as unvisited
-"""
-
-
-def set_all_unvisited(visited, maze):
-    for i in range(maze.shape[0]):
-        for j in range(maze.shape[1]):
-            visited[(i, j)] = 0
