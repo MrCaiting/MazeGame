@@ -1,5 +1,3 @@
-from scipy.sparse import csr_matrix
-from scipy.sparse.csgraph import minimum_spanning_tree
 import numpy as np
 
 def MSTdistance(a,b):
