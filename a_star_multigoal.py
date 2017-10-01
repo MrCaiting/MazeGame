@@ -120,8 +120,7 @@ def a_star_multi_init(maze):
             visited = {(i, j): 0}
             path_cost = {(i, j): 0}
 
-    frontier = PriorityQueue()
-    return heu_val, visited, path_cost, frontier
+    return heu_val, visited, path_cost
 
 
 """

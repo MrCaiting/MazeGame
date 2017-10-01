@@ -12,14 +12,15 @@ from best_first_search import *
 
 "Read the maze txt file and get everything we need for searching"
 
-row, col = readTXT.get_size_txt('mediumMaze.txt')
-maze = readTXT.read_txt('mediumMaze.txt', row, col)
+row, col = readTXT.get_size_txt('bigMaze.txt')
+maze = readTXT.read_txt('bigMaze.txt', row, col)
 start,end = readTXT.find_enter_exit(maze)
+print(start, end)
 method_list = (pacman_dfs, pacman_bfs, best_first_search, a_star_search)
 method = 3
 path = method_list[method](maze, start, end)
 print(path)
-
+print(len(path))
 
 for i, j in path:
     maze[i][j] = "."
