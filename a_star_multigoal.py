@@ -72,6 +72,7 @@ def a_star_multigoal(maze, current, ToGoGoals, goal_sequence, frontier,
                      heu_val, visited, path_cost, total_cost, node_expanded):
     " If the current node is not valid "
     print(current)
+    flag = 0
     if current is None:
         return goal_sequence
 
@@ -95,7 +96,7 @@ def a_star_multigoal(maze, current, ToGoGoals, goal_sequence, frontier,
                 "Since a goal is found, we need to reset all others unvisited"
                 visited = set_all_unvisited(visited, maze.shape[0], maze.shape[1])
                 "Update the number of nodes that we have explored"
-                node_expanded += frontier.len()
+                node_expanded += len(frontier.elements)
                 "Remove all the elements in the priority queue"
                 frontier.clear()
 
