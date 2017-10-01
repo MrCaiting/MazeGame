@@ -37,16 +37,16 @@ class Queue:
 
 class PriorityQueue:
     def __init__(self):
-        self.heap = []
+        self.elements = []
 
-    def push(self, item, priority):
-        heapq.heappush(self.heap, (priority, item))
+    def push(self, priority, item):
+        heapq.heappush(self.elements, (priority, item))
 
     def pop(self):
-        heapq.heappop(self.heap)[1]
+        return heapq.heappop(self.elements)[1]
 
     def isEmpty(self):
-        return len(self.heap) == 0
+        return len(self.elements) == 0
 
     def clear(self):
         while (self.isEmpty()) != 1:
