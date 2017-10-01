@@ -4,6 +4,7 @@ import utility
 
 row, col = readTXT.get_size_txt('tinySearch.txt')
 maze = readTXT.read_txt('tinySearch.txt', row, col)
+print(maze[4][4])
 start,goal_list = readTXT.find_multi_goals(maze)
 print(start, goal_list)
 frontier = PriorityQueue()

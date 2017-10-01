@@ -71,6 +71,7 @@ nodeInPath:     Integer that represents how many nodes that we have expanded
 def a_star_multigoal(maze, current, ToGoGoals, goal_sequence, frontier,
                      heu_val, visited, path_cost, total_cost, node_expanded):
     " If the current node is not valid "
+    print(current)
     if current is None:
         return goal_sequence
 
@@ -116,19 +117,21 @@ def a_star_multigoal(maze, current, ToGoGoals, goal_sequence, frontier,
         else:   # if the x-coordinate is not valid, keep going
             continue
         "Now, we have the correct coordinate, calculate new heuristic value"
-        flag, new_heu, new_cost = heuristic_multi_goal(neighbor, ToGoGoals,
+        nig, new_heu, new_cost = heuristic_multi_goal(neighbor, ToGoGoals,
                                                        path_cost[current],
                                                        visited[neighbor],
                                                        heu_val[neighbor])
-        if (flag == 1):
+        if (nig == 1):
             path_cost[neighbor] = new_cost
             heu_val[neighbor] = new_heu
         " push the child on to the p-Queue"
-        frontier.push(neighbor, heu_val[neighbor])
+        frontier.push(heu_val[neighbor] ,neighbor)
     success = 0
-    while (success == 0 and frontier.isEmpty() != 0):
+
+    while (success == 0 and (frontier.isEmpty() is False)):
+        print("in")
         currNode = frontier.pop()
-        if (visited[currNode] == 0 and maze[currNode[0], currNode[1]] != '%'):
+        if (visited[(currNode[0],currNode[1])] == 0 and maze[currNode[0],currNode[1]] != '%'):
             success, total_cost, node_expanded = a_star_multigoal(maze,
                                                                   currNode,
                                                                   ToGoGoals,
@@ -139,4 +142,4 @@ def a_star_multigoal(maze, current, ToGoGoals, goal_sequence, frontier,
                                                                   path_cost,
                                                                   total_cost,
                                                                   node_expanded)
-    return 1, total_cost, node_expanded
+    return success, total_cost, node_expanded
