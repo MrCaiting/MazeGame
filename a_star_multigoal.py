@@ -74,7 +74,7 @@ def a_star_multigoal(maze, current, ToGoGoals, goal_sequence, frontier,
     print(current)
     flag = 0
     if current is None:
-        return goal_sequence
+        return 0
 
     " If the current possition is one of the goals "
     if (maze[current[0], current[1]] == '.'):
@@ -89,7 +89,7 @@ def a_star_multigoal(maze, current, ToGoGoals, goal_sequence, frontier,
             if (len(ToGoGoals) == 1):
                 goal_sequence.append(current)
                 total_cost = path_cost[current]
-                return 1, total_cost, node_expanded
+                return 1, total_cost, node_expanded, goal_sequence
             else:
                 goal_sequence.append(current)
                 ToGoGoals.remove(current)
@@ -126,23 +126,17 @@ def a_star_multigoal(maze, current, ToGoGoals, goal_sequence, frontier,
             path_cost[neighbor] = new_cost
             heu_val[neighbor] = new_heu
         " push the child on to the p-Queue"
-        frontier.push(heu_val[neighbor] ,neighbor)
+        frontier.push(heu_val[neighbor], neighbor)
     success = 0
 
     while (success == 0 and (frontier.isEmpty() is False)):
         print("in")
         currNode = frontier.pop()
-        if (visited[(currNode[0],currNode[1])] == 0 and maze[currNode[0],currNode[1]] != '%'):
-            success, total_cost, node_expanded = a_star_multigoal(maze,
-                                                                  currNode,
-                                                                  ToGoGoals,
-                                                                  goal_sequence,
-                                                                  frontier,
-                                                                  heu_val,
-                                                                  visited,
-                                                                  path_cost,
-                                                                  total_cost,
-                                                                  node_expanded)
+        if (visited[(currNode[0], currNode[1])] == 0 and maze[currNode[0], currNode[1]] != '%'):
+            success, total_cost,
+            node_expanded, goal_sequence = a_star_multigoal(maze, currNode, ToGoGoals,
+                                                            goal_sequence, frontier,
+                                                            heu_val, visited, path_cost,
+                                                            total_cost, node_expanded)
 
-    return success, total_cost, node_expanded
-
+    return success, total_cost, node_expanded, goal_sequence
