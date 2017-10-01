@@ -6,7 +6,7 @@ def best_first_search(maze, start, end):
     parents = {}
     g_score = {start: 0}
     fringe = utility.PriorityQueue()
-    fringe.push(start, 0)
+    fringe.push(0, start)
     parents[start] = None
     path = []
     neighbors = [(0, 1), (0, -1), (1, 0), (-1, 0)]
@@ -43,9 +43,9 @@ def best_first_search(maze, start, end):
                 continue
             #
             if g_temp < g_score.get(neighbor, 0) or (neighbor not in [i[1] for
-                                                                      i in fringe.heap]):
+                                                                      i in fringe.elements]):
                 parents[neighbor] = curr
                 g_score[neighbor] = g_temp
-                fringe.push(neighbor, g_score[neighbor])
+                fringe.push( g_score[neighbor], neighbor)
                 node_expanded += 1
     return False

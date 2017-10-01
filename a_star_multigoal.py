@@ -142,4 +142,6 @@ def a_star_multigoal(maze, current, ToGoGoals, goal_sequence, frontier,
                                                                   path_cost,
                                                                   total_cost,
                                                                   node_expanded)
+
     return success, total_cost, node_expanded
+
