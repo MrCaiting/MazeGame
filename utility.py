@@ -54,6 +54,10 @@ class PriorityQueue:
     def isEmpty(self):
         return len(self.heap) == 0
 
+    def clear(self):
+        while (self.isEmpty()) != 1:
+            self.pop()
+
 
 def heuristicFcn(p, q):
     """

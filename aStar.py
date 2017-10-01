@@ -63,7 +63,7 @@ def a_star_search(maze, start, goal):
             if neighbor in close_list and g_temp >= g_score.get(neighbor, 0):
                 # skip if the node is closed
                 continue
-            
+
             if g_temp < g_score.get(neighbor, 0) or (neighbor not in [i[1] for
                                                      i in frontier.heap]):
                 parents[neighbor] = current
