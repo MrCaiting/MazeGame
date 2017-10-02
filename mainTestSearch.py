@@ -2,7 +2,7 @@ import readTXT
 from a_star_multigoal import *
 import utility
 import time
-file = 'tinySearch.txt'
+file = 'smallSearch.txt'
 row, col = readTXT.get_size_txt(file)
 maze = readTXT.read_txt(file, row, col)
 start,goal_list = readTXT.find_multi_goals(maze)
