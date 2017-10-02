@@ -71,7 +71,6 @@ nodeInPath:     Integer that represents how many nodes that we have expanded
 def a_star_multigoal(maze, current, ToGoGoals, goal_sequence, frontier,
                      heu_val, visited, path_cost, total_cost, node_expanded):
     " If the current node is not valid "
-    print(current)
     flag = 0
     if current is None:
         return 0
@@ -96,6 +95,7 @@ def a_star_multigoal(maze, current, ToGoGoals, goal_sequence, frontier,
                 "Since a goal is found, we need to reset all others unvisited"
                 visited = set_all_unvisited(visited, maze.shape[0], maze.shape[1])
                 "Update the number of nodes that we have explored"
+                print(len(frontier.elements))
                 node_expanded += len(frontier.elements)
                 "Remove all the elements in the priority queue"
                 frontier.clear()
@@ -130,7 +130,6 @@ def a_star_multigoal(maze, current, ToGoGoals, goal_sequence, frontier,
     success = 0
 
     while (success == 0 and (frontier.isEmpty() is False)):
-        print("in")
         currNode = frontier.pop()
         if (visited[(currNode[0], currNode[1])] == 0 and maze[currNode[0], currNode[1]] != '%'):
             success, total_cost, node_expanded, goal_sequence = a_star_multigoal(maze, currNode, ToGoGoals,

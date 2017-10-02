@@ -37,14 +37,13 @@ def a_star_search(maze, start, goal):
                 cost_sofar += 1
             clk_used = time.clock() - clk
             print("Time Used: ", clk_used, " seconds")
-            return path
+            return path, node_expanded
 
         "If the current node is not our goal, we add it to the close list"
         close_list.add(current)
 
         "Now we need to check all 4 neighbors of the current node"
         for dx, dy in neighbors:
-            print(current)
             neighbor = current[0] + dx, current[1] + dy
             g_temp = g_score[current] + heuristicFcn(current, neighbor)
             f_temp = g_temp + heuristicFcn(neighbor, goal)
