@@ -2,9 +2,9 @@ import readTXT
 from a_star_multigoal import *
 import utility
 import time
-
-row, col = readTXT.get_size_txt('smallSearch.txt')
-maze = readTXT.read_txt('smallSearch.txt', row, col)
+file = 'tinySearch.txt'
+row, col = readTXT.get_size_txt(file)
+maze = readTXT.read_txt(file, row, col)
 start,goal_list = readTXT.find_multi_goals(maze)
 frontier = PriorityQueue()
 heu_val, visited, path_cost = a_star_multi_init(maze)

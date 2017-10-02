@@ -95,8 +95,8 @@ def a_star_multigoal(maze, current, ToGoGoals, goal_sequence, frontier,
                 "Since a goal is found, we need to reset all others unvisited"
                 visited = set_all_unvisited(visited, maze.shape[0], maze.shape[1])
                 "Update the number of nodes that we have explored"
-                print(len(frontier.elements))
-                node_expanded += len(frontier.elements)
+                #node_expanded += len(frontier.elements)
+                #print(node_expanded)
                 "Remove all the elements in the priority queue"
                 frontier.clear()
 
@@ -127,6 +127,7 @@ def a_star_multigoal(maze, current, ToGoGoals, goal_sequence, frontier,
             heu_val[neighbor] = new_heu
         " push the child on to the p-Queue"
         frontier.push(heu_val[neighbor], neighbor)
+        node_expanded += 1
     success = 0
 
     while (success == 0 and (frontier.isEmpty() is False)):
