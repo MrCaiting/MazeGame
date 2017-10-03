@@ -20,7 +20,7 @@ def best_first_search(maze, start, end):
                 curr = parents[curr]
             clk_used = time.clock() - clk
             print("Time Used: ", clk_used, " seconds")
-            return path
+            return path, node_expanded
 
         closed.add(curr)
         "Now we need to check all 4 neighbors of the current node"
