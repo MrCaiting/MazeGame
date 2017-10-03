@@ -13,7 +13,7 @@ def mainTestSearch(filename):
     flag, total_cost, node_expanded, goal_sequence = a_star_multigoal(maze, start, goal_list,
                                                                   goal_sequence, frontier,
                                                                   heu_val, visited,
-                                                                  path_cost, 0, 0)
+                                                                  path_cost, 0, 0, 0)
     time_used = time.clock() - start_time
     print("Time Used: ", time_used)
     print("Success = ", flag, "\nPath Cost = ", total_cost, "\nNode Expanded = ", node_expanded)

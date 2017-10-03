@@ -69,7 +69,7 @@ nodeInPath:     Integer that represents how many nodes that we have expanded
 
 
 def a_star_multigoal(maze, current, ToGoGoals, goal_sequence, frontier,
-                     heu_val, visited, path_cost, total_cost, node_expanded):
+                     heu_val, visited, path_cost, total_cost, node_expanded,temp_cost):
     " If the current node is not valid "
     flag = 0
     if current is None:
@@ -77,6 +77,7 @@ def a_star_multigoal(maze, current, ToGoGoals, goal_sequence, frontier,
 
     " If the current possition is one of the goals "
     if (maze[current[0], current[1]] == '.'):
+
         " If it is indeed a goal, we need to find out which one"
         for singleGaol in ToGoGoals:
             if (current == singleGaol):
@@ -91,6 +92,7 @@ def a_star_multigoal(maze, current, ToGoGoals, goal_sequence, frontier,
                 return 1, total_cost, node_expanded, goal_sequence
             else:
                 goal_sequence.append(current)
+                temp_cost = 0
                 ToGoGoals.remove(current)
                 "Since a goal is found, we need to reset all others unvisited"
                 visited = set_all_unvisited(visited, maze.shape[0], maze.shape[1])
@@ -118,24 +120,28 @@ def a_star_multigoal(maze, current, ToGoGoals, goal_sequence, frontier,
         else:   # if the x-coordinate is not valid, keep going
             continue
         "Now, we have the correct coordinate, calculate new heuristic value"
-        nig, new_heu, new_cost = heuristic_multi_goal(neighbor, ToGoGoals,
-                                                       path_cost[current],
+        nig, new_heu, new_cost = heuristic_multi_goal(neighbor, ToGoGoals, path_cost[current],
+                                                       temp_cost,
                                                        visited[neighbor],
                                                        heu_val[neighbor])
         if (nig == 1):
-            path_cost[neighbor] = new_cost
+            path_cost[neighbor]  = new_cost
             heu_val[neighbor] = new_heu
         " push the child on to the p-Queue"
         frontier.push(heu_val[neighbor], neighbor)
+
         node_expanded += 1
     success = 0
 
     while (success == 0 and (frontier.isEmpty() is False)):
+
         currNode = frontier.pop()
+
         if (visited[(currNode[0], currNode[1])] == 0 and maze[currNode[0], currNode[1]] != '%'):
+            temp_cost += 1
             success, total_cost, node_expanded, goal_sequence = a_star_multigoal(maze, currNode, ToGoGoals,
                                                             goal_sequence, frontier,
                                                             heu_val, visited, path_cost,
-                                                            total_cost, node_expanded)
+                                                            total_cost, node_expanded,temp_cost)
 
     return success, total_cost, node_expanded, goal_sequence

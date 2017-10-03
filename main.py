@@ -7,7 +7,7 @@ filename_search = 'tinySearch.txt'
 "                               1: Breadth First Search" \
 "                               2: Greedy Best First Search" \
 "                               3: A* Search                "
-method = 0
+method = 3
 print("Maze Single Goal: ")
 success_maze = mainTest(filename_maze,method)
 "Maze multigoal path search running A* algorithm"

@@ -4,7 +4,7 @@ import MST
 from scipy.sparse import csr_matrix
 from scipy.sparse.csgraph import minimum_spanning_tree
 
-def heuristic_multi_goal(curr_child, goal_list, path_cost, closed_list, heu_val):
+def heuristic_multi_goal(curr_child, goal_list, path_cost, temp_cost, closed_list, heu_val):
     dist_2goal = np.zeros(len(goal_list))
     i = 0
     for goal in goal_list:
@@ -17,7 +17,8 @@ def heuristic_multi_goal(curr_child, goal_list, path_cost, closed_list, heu_val)
     min_tree = minimum_spanning_tree(tree, overwrite=False)
     min_tree = min_tree.toarray().astype(int)
     MSTweight = MST.findMSTweight(min_tree)
-    heuristic = min_dist_2goal + MSTweight + path_cost + 1
+
+    heuristic = MSTweight + min_dist_2goal + temp_cost
 
     if (closed_list == 0) or (heuristic < heu_val):
         hn = heuristic
