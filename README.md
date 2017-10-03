@@ -43,6 +43,12 @@
   This file sontains method to compute the admissible heuritic that we used in pt.2
 #### 10. mainTestSearch.py:
   Main test file for pt.2
+#### 11. extracredit.py:
+  Extra credit functions
+#### 12. mainTestSearch.py:
+  Main test_file for extra credit
+#### 13. main.py
+  Top level main file that prints out all the results
  
 ## TXT Files:
 #### For Part.1
